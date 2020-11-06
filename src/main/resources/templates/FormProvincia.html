@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+
+<!-- Bootstrap core CSS -->
+<link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+<link th:href="@{/bootstrap/css/sticky-footer-navbar.css}"
+	rel="stylesheet">
+</head>
+<body>
+
+	<div class="container">
+		<div class="container" style="color: green">
+			<h1 th:text="${titulo}"></h1>
+		</div>
+
+		<form th:action="@{/crearProvincia}" th:object="${provincia}" method="post">
+
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="nombreProvincia">Nombre d</label> <input type="hidden"
+							th:field="*{id}"> <input type="text" class="form-control"
+							th:field="*{nombreProvincia}"
+							placeholder="Escriba el nombre de la provincia"
+							required="required">
+					</div>
+						<div class="form-group">
+					<label for="departamento" class="control-label">Departamento:</label> 
+					<select th:field="*{departamento}"  class="form-control">
+						<option th:each="dep : ${departamentos}"
+						th:value="${dep.id}"
+						th:text="${dep.nombreDepartamento}">
+						</option>
+					</select>
+				</div>
+					
+				</div>
+			</div>
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary btn-clock">Guardar</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

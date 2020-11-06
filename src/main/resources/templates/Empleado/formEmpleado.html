@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title th:text="${titulo}"></title>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+	crossorigin="anonymous"></script>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+	integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+	crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+
+	<div class="container" style="color: green">
+		<h1 th:text="${titulo}"></h1>
+	</div>
+
+	<div class="container">
+
+		<div th:object="${empleado}" th:remove="tag">
+			<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
+				role="alert">
+				<li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
+			</ul>
+		</div>
+
+		<form th:action="@{/guardarE}" th:object="${empleado}" method="post"
+			enctype="multipart/form-data">
+
+
+
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<img class="rounded mx-auto d-block"
+							th:src="@{/imagenes/{img} (img=${empleado.foto}) } "
+							alt="Generic placeholder image" width="200" height="200">
+
+					</div>
+				</div>
+			</div>
+
+			<div class="	">
+				<div class="form-group ">
+					<label>Nombre:</label> <input type="hidden" th:field="*{foto}">
+					<input type="text" th:field="*{nombre}" class="form-control"
+						placeholder="nombres" th:errorclass="'form-control alert-danger'" />
+					<small class="form-text text-danger"
+						th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+				</div>
+
+				<div class="form-group">
+					<label>Apellido:</label> <input type="text" th:field="*{Apellido}"
+						class="form-control" placeholder="Apellido"
+						th:errorclass="'form-control alert-danger'" /> <small
+						class="form-text text-danger"
+						th:if="${#fields.hasErrors('Apellido')}" th:errors="*{Apellido}"></small>
+				</div>
+
+				<div class="form-group">
+					<label>Edad:</label> <input type="text" th:field="*{edad}"
+						class="form-control" placeholder="edad" required="required"
+						th:errorclass="'form-control alert-danger'" /> <small
+						class="form-text text-danger" th:if="${#fields.hasErrors('edad')}"
+						th:errors="*{edad}"></small>
+				</div>
+
+				<div class="form-group">
+					<label for="genero" class="control-label">Genero:</label> <select
+						th:field="*{genero}" class="form-control">
+						<option value="Masculino">Masculino</option>
+						<option value="Femenino">Femenino</option>
+					</select>
+
+
+				</div>
+				<div class="form-group">
+					<label>Telefono:</label> <input class="form-control" type="text"
+						th:field="*{telefono}" placeholder="Descripcion"
+						required="required" th:errorclass="'form-control alert-danger'" />
+				</div>
+
+				<div class="form-group">
+					<label for="estado" class="control-label">Estado:</label> <select
+						th:field="*{estado}" class="form-control">
+						<option value="Contratado">Contratado</option>
+						<option value="No Contratado">No Contratado</option>
+					</select>
+				<!--</div>
+				<div class="form-group">
+					<label for="departamento" class="control-label">Departamentos:</label>
+					<select class="form-control">
+						<option th:each="dep : ${departamentos}" th:value="${dep.id}"
+							th:text="${dep.nombreDepartamento}"></option>
+					</select> <label for="provincia" class="control-label">Provincias:</label>
+					<select th:field="*{provincia}" class="form-control">
+						<option th:each="prv : ${provincias}" th:value="${prv.id}"
+							th:text="${prv.nombreProvincia}"></option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="cargo" class="control-label">Cargo:</label> <select
+						th:field="*{cargo}" class="form-control">
+						<option th:each="cargo : ${cargos}" th:value="${cargo.id}"
+							th:text="${cargo.nombre}"></option>
+					</select>
+				</div>-->
+
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label for="imagen">Imagen</label> <input type="file"
+							name="imagen" class="form-control-file" />
+						<!--  <p class="help-block">Foto Referencial</p>-->
+					</div>
+				</div>
+
+			</div>
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary btn-clock">Guardar</button>
+			</div>
+	</div>
+	</form>
+	</div>
+</body>
+</html>

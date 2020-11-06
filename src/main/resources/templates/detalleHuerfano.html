@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+	<div class="container contact-form">
+		<h1 th:text="${titulo}"></h1>
+		<hr>
+		<div class="row">
+			<div class="col-md-6">
+				<h5>Imagen descriptiva</h5>
+				<img height="400" width="300"
+					src="${urlPublic}/images/${huerfano.fotoReferencial}">
+			</div>
+			<div class="col-md-6">
+				<div class="form-group col-md-6">
+					<label>Nombre:</label> <label class="form-control">${huerfano.nombre}</label>
+				</div>
+				<div class="form-group col-md-6" style="float: right">
+					<label>Apellido:</label> <label class="form-control">${huerfano.apellido}</label>
+				</div>
+
+				<div class="form-group col-md-6" style="float: right">
+					<label>Edad:</label> <label class="form-control">${huerfano.edad}</label>
+				</div>
+
+				<div class="form-group col-md-6" style="float: right">
+					<label>Genero:</label> <label class="form-control">${huerfano.genero}</label>
+				</div>
+				<div class="form-group col-md-6">
+					<label>Estado:</label> <label class="form-control">${huerfano.estado}</label>
+				</div>
+				<div class="form-group">
+					<label>Pequeña descripcion!</label>
+					<texarea class="form-control" rows="14">${huerfano.descripcion}</textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

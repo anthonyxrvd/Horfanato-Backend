@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title th:text="${titulo}"></title>
+
+<link rel="icon" href="favicon.ico">
+
+
+<!-- Bootstrap core CSS -->
+<link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+<link th:href="@{/bootstrap/css/sticky-footer-navbar.css}"
+	rel="stylesheet">
+<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+	rel="stylesheet">
+<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+<!-- funciones.js -->
+<script type="text/javascript" th:src="@{/js/busqueda.js}"></script>
+
+</head>
+<body>
+
+	<div class="container" style="color: green">
+		<h1 th:text="${titulo}"></h1>
+	</div>
+
+	<div class="container">
+
+		<div th:object="${huerfano}" th:remove="tag">
+			<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger"
+				role="alert">
+				<li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
+			</ul>
+		</div>
+
+		<form th:action="@{/guardar}" th:object="${huerfano}" method="post"
+			enctype="multipart/form-data">
+
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="form-group">
+						<img class="rounded mx-auto d-block"
+							th:src="@{/imagenes/}+${huerfano.foto}" alt="duhh" width="200"
+							height="200">
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="form-group ">
+					<label>Nombre:</label> <input type="hidden" th:field="*{foto}">
+					<input type="text" th:field="*{nombre}" class="form-control"
+						placeholder="nombres" th:errorclass="'form-control alert-danger'" />
+					<small class="form-text text-danger"
+						th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+				</div>
+
+				<div class="form-group">
+					<label>Apellido:</label> <input type="text" th:field="*{Apellido}"
+						class="form-control" placeholder="Apellido"
+						th:errorclass="'form-control alert-danger'" /> <small
+						class="form-text text-danger"
+						th:if="${#fields.hasErrors('Apellido')}" th:errors="*{Apellido}"></small>
+				</div>
+				<div class="form-group">
+					<label>Edad:</label> <input type="text" th:field="*{edad}"
+						class="form-control" placeholder="edad" required="required"
+						th:errorclass="'form-control alert-danger'" /> <small
+						class="form-text text-danger" th:if="${#fields.hasErrors('edad')}"
+						th:errors="*{edad}"></small>
+				</div>
+
+				<div class="form-group">
+					<label for="genero" class="control-label">Genero:</label> <select
+						th:field="*{genero}" class="form-control">
+						<option value="Masculino">Masculino</option>
+						<option value="Femenino">Femenino</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label for="estado" class="control-label">Estado:</label> <select
+						th:field="*{estado}" class="form-control">
+						<option th:each="estado : ${categorias}" th:value="${estado.id}"
+							th:text="${estado.nombre}"></option>
+					</select>
+				</div>
+
+				 <div class="form-group">
+					<label for="departamento" class="control-label">Departamentos:</label>
+					<select class="form-control">
+						<option th:each="dep : ${departamentos}" th:value="${dep.id}"
+							th:text="${dep.nombreDepartamento}"></option>
+					</select><label for="provincia" class="control-label">Provincias:</label>
+					<select th:field="*{provincia}" class="form-control">
+						<option th:each="prv : ${provincias}" th:value="${prv.id}"
+							th:text="${prv.nombreProvincia}"></option>
+					</select>
+				</div>
+				
+				 <select id="comboboxDepartamento" style="width: 200px">
+					<option th:each="dep : ${departamentos}"
+						th:value="${dep.id}" th:text="${dep.nombreDepartamento}"></option>
+				</select>
+				
+				<select id="comboboxProvincia" style="width: 200px">
+						
+					</select>
+
+
+
+				<!-- DETALLES -->
+
+				<div class="form-group">
+					<label>Descripcion:</label> <input class="form-control" type="text"
+						th:field="*{detalle.descripcion}" placeholder="Descripcion"
+						required="required" th:errorclass="'form-control alert-danger'" />
+				</div>
+
+
+				<div class="form-group">
+					<label>Tipo De Sangre:</label> <input class="form-control"
+						type="text" th:field="*{detalle.tipoDeSangre}"
+						placeholder="Descripcion" required="required"
+						th:errorclass="'form-control alert-danger'" />
+				</div>
+
+
+				<div class="col-sm-4">
+					<div class="form-group">
+						<label for="fechaDeRegistro">Fecha de registro</label> <input
+							type="text" class="form-control" id="fechaDeRegistro"
+							th:field="*{detalle.fechaDeRegistro}" required="required" />
+					</div>
+				</div>
+
+				<div class="form-group"></div>
+				<div class="col-sm-3">
+					<div class="form-group">
+						<label for="imagen">Imagen</label> <input type="file"
+							name="imagen" class="form-control-file" />
+						<!--<p class="help-block">Foto Referencial</p>-->
+					</div>
+				</div>
+
+
+
+
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary btn-clock">Guardar</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script th:src="@{/tinymce/tinymce.min.js}"></script>
+	<script>
+      $(function () {
+         $("#fechaDeRegistro").datepicker({dateFormat: 'dd-mm-yy'});
+      }
+      );
+   </script>
+
+</body>
+</html>

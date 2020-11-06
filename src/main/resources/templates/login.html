@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title th:text="${titulo}">-----</title>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+	crossorigin="anonymous"></script>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+	integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet" th:href="@{/css/login.css}"></link>
+</head>
+<body>
+	<di class="container col-lg-3">
+		<form th:action="@{/loginProcess}"  method="post">
+			<div class="form-group text-center">
+				<img height="80" width="80" th:src="@{/images/logo2.png}"></img>
+				<p th:text="${mensaje}"></p>
+			</div>
+			<!-- <div th:if="${param.error}">
+				<span class="text-danger">Usuario / Password incorrectos!</span>
+			</div>
+			<div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
+			 -->
+			<div class="form-group">
+				<label>USUARIO:</label> <input class="form-control" type="text"
+					name="username" placeholder="nombre o id">
+			</div>
+			<div class="form-group">
+				<label>CONTRASENA:</label> <input class="form-control"
+					type="password" name="password" placeholder="*******">
+			</div>
+			<input class="btn btn-danger btn-block" type="submit"
+				value="INGRESAR" name="accion">
+		</form>
+	</div>
+	<!-- <a href="planilla">abrir planilla</a>-->
+</body>
+</html>

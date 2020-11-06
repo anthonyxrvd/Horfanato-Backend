@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+
+<!-- Bootstrap core CSS -->
+<link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+<!-- Custom styles for this template -->
+<link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+<link th:href="@{/bootstrap/css/sticky-footer-navbar.css}"
+	rel="stylesheet">
+<link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+	rel="stylesheet">
+
+</head>
+</head>
+<body><nav class="navbar navbar-dark bg-dark">
+		<a style="color: white" class="navbar-toggler"><span
+			class="navbar-toggler-icon"></span>Home</a>
+		<div class="dropdown">
+			<a style="color: white" href="#" class="nav-link dropdown-toggle"
+				data-toggle="dropdown">Cerrar Sesion</a>
+			<div class="dropdown-menu text-center">
+				<a><img height="60" width="60"src="${urlPublic}/images/login.png"></a><br>
+				<a> ${nombre}</a>
+				<div class="dropdown-divider"></div>
+				<a href="acceso" class="dropdown-item">Salir</a>
+			</div>
+		</div>
+	</nav>
+
+	<div class="opciones">
+	<div class="card-header">Opciones</div>
+		<div class="card-body">
+			<table class="table table-striped table-bordered table-hover ">
+				<thead class="thead-white">
+					<tr>
+						<th scope="row"><li><a th:href="@{/huerfanos}">Abrir lista de niños del albergue</a></li></th>
+						<th scope="row"><li><a href="Empleados">Abrir planilla de trabajadores</a></li></th>
+						<th scope="row"><li><a href="data">Estadisticas</a></li></th>
+						<th scope="row"><li><a href="call">Contactanos</a></li></th>
+						<th scope="row"><li><a th:href="@{/categorias}">Categorias</a></li></th>
+						<th scope="row"><li><a th:href="@{/provincias}">Provincias</a></li></th>
+						<th scope="row"><li><a th:href="@{/departamentos}">Departamentos</a></li></th>
+					</tr>
+				</thead>
+				<tbody>
+	</div>
+	
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+
+</body>
+</html>

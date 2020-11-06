@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title th:text="${titulo}"></title>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+	integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+	crossorigin="anonymous"></script>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+	integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet" th:href="@{/css/style.css}"></link>
+</head>
+<body>
+	<div class="card table-responsive container theme-showcase">
+
+
+		<div class="alert alert-success" th:if="${success!=null}"
+			th:text="${success}"></div>
+		<div class="alert alert-danger" th:if="${error!=null}"
+			th:text="${error}"></div>
+		<div class="alert alert-warning" th:if="${warning!=null}"
+			th:text="${warning}"></div>
+		<div class="alert alert-info" th:if="${info!=null}" th:text="${info}"></div>
+		<div class="container">
+			<h1
+				class="text-secondary border border-success border-top-0 border-left-0 border-right-0"
+				th:text="${titulo}"></h1>
+			<div class="card-header">
+				Lista de trabajadores <a class="btn btn-warning btn-clock"
+					th:href="@{/Empleado/formEmpleado}" role="button">Nuevo registro</a>
+			</div>
+
+			<div class="container theme-showcase" role="main">
+				<div></div>
+				<table class="table table-striped table-bordered table-hover ">
+					<caption
+						class="text-secondary border border-success border-top-0 border-left-0 border-right-0"
+						th:text="${titulo}"></caption>
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">ID</th>
+							<th scope="col">Nombre</th>
+							<th scope="col">Apellidos</th>
+							<th scope="col">Genero</th>
+							<th scope="col">Estado</th>
+							<th scope="col">Telefono</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="empleado: ${empleado}">
+
+							<td class="alert-success" th:text="${empleado.id}"></td>
+							<td class="alert-success" th:text="${empleado.nombre}"></td>
+							<td class="alert-success" th:text="${empleado.apellido}"></td>
+							<td class="alert-success" th:text="${empleado.genero}"></td>
+							<td class="alert-success" th:text="${empleado.estado}"></td>
+							<td class="alert-success" th:text="${empleado.telefono}"></td>
+							<td><a class="btn btn-primary btn-xs" th:text="'editar'"
+								th:href="@{/formEmpleado/}+${empleado.id}"></a>
+							<a class="btn btn-danger btn-xs" th:text="'eliminar'"
+								th:href="@{/eliminarE/}+${empleado.id}"
+								onclick="return confirm('Deseas Eliminar?');"></a>
+							 <a style="font-weight: bold" class="btn btn-success btn-clock"
+									th:href="@{/formEmpleado/}+${empleado.id}" role="button" >detalles </a></td>
+
+							<!-- <td class="alert-warning" th:text="${empleado.id}"></td>
+							<td class="alert-warning" th:text="${empleado.nombre}"></td>
+							<td class="alert-warning" th:text="${empleado.apellido}"></td>
+							<td class="alert-warning" th:text="${empleado.telefono}"></td>
+							<td class="alert-warning" th:text="${empleado.genero}"></td>
+							<td class="alert-warning" th:text="${empleado.estado}"></td>
+							<td><a class="btn btn-primary btn-xs" th:text="'editar'"
+								th:href="@{/formEmpleado/}+${empleado.id}"></a></td>
+							<td><a class="btn btn-danger btn-xs" th:text="'eliminar'"
+								th:href="@{/eliminarE/}+${empleado.id}"
+								onclick="return confirm('Deseas Eliminar?');"></a></td>
+							<!--  <a style="font-weight: bold" class="btn btn-success btn-clock"
+									href="detalles/${dato.id}" role="button" >detalles </a>-->
+
+
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<nav>
+		<div class="opciones">
+			<ul>
+				<li><a href="data">Estadisticas</a></li>
+				<li><a href="Principal">Salir</a></li>
+
+			</ul>
+		</div>
+	</nav>
+
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+		crossorigin="anonymous"></script>
+</body>
+</html>
